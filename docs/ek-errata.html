@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EK-Errata Formelsammlung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: Errata-Blatt einer Formelsammlung - Kopf, Bereiche, je Korrektur eine Karte "EK schreibt / richtig" in 2 Spalten */
+:root {
+  --bg: #f5f6f8;
+  --paper: #ffffff;
+  --ink: #18202b;
+  --muted: #5b6574;
+  --line: #d9dee6;
+  --falsch: #b42318;
+  --falsch-bg: #fdf0ef;
+  --richtig: #17694d;
+  --richtig-bg: #ecf6f1;
+  --accent: #2c4fa3;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
+  --f-math: "STIX Two Text", "Cambria Math", "Times New Roman", serif;
+  --f-code: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #11151b; --paper: #181d25; --ink: #e6eaf0; --muted: #9aa4b2; --line: #2b323d;
+    --falsch: #ff8a80; --falsch-bg: #2a1716; --richtig: #6fd3a6; --richtig-bg: #13251e; --accent: #8fb0ff;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #11151b; --paper: #181d25; --ink: #e6eaf0; --muted: #9aa4b2; --line: #2b323d;
+  --falsch: #ff8a80; --falsch-bg: #2a1716; --richtig: #6fd3a6; --richtig-bg: #13251e; --accent: #8fb0ff;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-inline: 20px; padding-block: 32px 48px; display: grid; gap: 36px; }
+header { display: grid; gap: 10px; max-width: 70ch; }
+.kicker { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 700; }
+h1 { font-family: var(--f-math); font-weight: 600; font-size: clamp(28px, 4vw, 38px); line-height: 1.15; margin: 0; text-wrap: balance; }
+header p { margin: 0; color: var(--muted); }
+.legende { display: flex; flex-wrap: wrap; gap: 8px 18px; font-size: 13px; color: var(--muted); }
+.legende span { display: inline-flex; align-items: center; gap: 6px; }
+.dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+.dot.f { background: var(--falsch); } .dot.r { background: var(--richtig); }
+
+section { display: grid; gap: 14px; }
+h2 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 0; padding-bottom: 6px; border-bottom: 1px solid var(--line); color: var(--accent); }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 470px), 1fr)); gap: 14px; }
+
+.karte { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; padding: 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.kopf { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+h3 { font-size: 16px; margin: 0; text-wrap: balance; }
+.art { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--falsch); border: 1px solid currentColor; border-radius: 3px; padding: 1px 6px; white-space: nowrap; }
+.zeile { display: grid; grid-template-columns: 64px 1fr; gap: 10px; align-items: baseline; border-radius: 4px; padding: 6px 10px; }
+.zeile.f { background: var(--falsch-bg); }
+.zeile.r { background: var(--richtig-bg); }
+.zeile b { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; }
+.zeile.f b { color: var(--falsch); } .zeile.r b { color: var(--richtig); }
+.m { font-family: var(--f-math); font-size: 17px; overflow-wrap: anywhere; }
+.zeile.f .m { text-decoration: line-through; text-decoration-color: var(--falsch); text-decoration-thickness: 1.5px; }
+.m i { font-style: italic; }
+.m sub, .m sup { font-size: .7em; }
+.merke { margin: 0; font-size: 14px; color: var(--muted); }
+.merke strong { color: var(--ink); }
+.fuss { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; font-size: 12px; color: var(--muted); }
+code { font-family: var(--f-code); font-size: 12.5px; color: var(--accent); overflow-wrap: anywhere; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.fremd { background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+tr:last-child td { border-bottom: 0; }
+footer { font-size: 13px; color: var(--muted); display: grid; gap: 6px; max-width: 80ch; }
+footer p { margin: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="kicker">Spickzettel · Formelsammlung Elektronik Kompendium</div>
+    <h1>Wo die EK-Formelsammlung falsch rechnet</h1>
+    <p>17 Korrekturen auf 20 Themenseiten, Stand 03.10.2026. Je Karte die Formel von EK, die richtige Formel und die passende Funktion in <code>et_formeln.py</code>.</p>
+    <div class="legende"><span><i class="dot f"></i>so steht es auf EK</span><span><i class="dot r"></i>richtig</span></div>
+  </header>
+
+  <section>
+    <h2>Wechselstrom und Drehstrom</h2>
+    <div class="grid">
+      <article class="karte">
+        <div class="kopf"><h3>Blindleistung von Spule und Kondensator</h3><span class="art">vertauscht</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>Q</i><sub>L</sub> = <i>U</i>²·<i>ω</i><i>L</i> &nbsp;·&nbsp; <i>Q</i><sub>C</sub> = <i>U</i>² / (<i>ω</i><i>C</i>)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>Q</i><sub>L</sub> = <i>U</i>² / (<i>ω</i><i>L</i>) &nbsp;·&nbsp; <i>Q</i><sub>C</sub> = <i>U</i>²·<i>ω</i><i>C</i></span></div>
+        <p class="merke"><strong>Merke:</strong> immer <i>Q</i> = <i>U</i>²/<i>X</i>. Probe: 230 V, 50 Hz, 10 µF → 166 var.</p>
+        <div class="fuss"><code>blindleistung_spule · blindleistung_kondensator</code><a href="https://www.elektronik-kompendium.de/sites/formeln/berechnung-von-blindleistung-im-wechselstromkreis">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Neutralleiterstrom bei unsymmetrischer Last</h3><span class="art">Zeiger fehlen</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>I</i><sub>N</sub> = √(<i>I</i><sub>1</sub>² + <i>I</i><sub>2</sub>² + <i>I</i><sub>3</sub>²)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>I</i><sub>N</sub> = | <i>I</i><sub>1</sub> + <i>I</i><sub>2</sub>·e<sup>−j120°</sup> + <i>I</i><sub>3</sub>·e<sup>+j120°</sup> |</span></div>
+        <p class="merke"><strong>Probe:</strong> ohmsch 10 / 5 / 5 A → <i>I</i><sub>N</sub> = 5 A (EK: 12,2 A). Symmetrisch → 0 A.</p>
+        <div class="fuss"><code>neutralleiterstrom · drehstrom_stern_unsymmetrisch</code><a href="https://www.elektronik-kompendium.de/sites/formeln/sternschaltung-mit-unsymmetrischer-ungleichartiger-last">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Leiterstrom in Dreieckschaltung</h3><span class="art">vertauscht</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>I</i><sub>L</sub> = <i>I</i><sub>Str</sub> / √3</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>I</i><sub>L</sub> = √3 · <i>I</i><sub>Str</sub></span></div>
+        <p class="merke"><strong>Merke:</strong> im Dreieck ist der Leiterstrom der größere, in Stern die Leiterspannung. Betrifft 2 EK-Seiten (symmetrisch, unsymmetrisch gleichartig).</p>
+        <div class="fuss"><code>leiterstrom_dreieck · strangstrom_dreieck</code><a href="https://www.elektronik-kompendium.de/sites/formeln/dreieckschaltung-mit-symmetrischer-last">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>cos φ bei R parallel L</h3><span class="art">Reihenformel</span></div>
+        <div class="zeile f"><b>EK</b><span class="m">cos <i>φ</i> = <i>R</i> / √(<i>R</i>² + <i>X</i><sub>L</sub>²)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m">cos <i>φ</i> = <i>X</i><sub>L</sub> / √(<i>R</i>² + <i>X</i><sub>L</sub>²) = <i>Z</i> / <i>R</i></span></div>
+        <p class="merke"><strong>Merke:</strong> EK zeigt die Formel der Reihenschaltung. Parallel gilt tan <i>φ</i> = <i>R</i>/<i>X</i>.</p>
+        <div class="fuss"><code>phasenwinkel_parallel · z_parallel_betrag</code><a href="https://www.elektronik-kompendium.de/sites/formeln/wirkwiderstand-und-induktiver-blindwiderstand-parallel">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Phase des CR-Hochpasses</h3><span class="art">falsche Phase</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>φ</i> = arctan(<i>ω</i><i>R</i><i>C</i>)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>φ</i> = arctan(1 / (<i>ω</i><i>R</i><i>C</i>))</span></div>
+        <p class="merke"><strong>Probe:</strong> bei <i>f</i> → 0 sind es 90°, bei <i>f</i><sub>g</sub> genau 45°.</p>
+        <div class="fuss"><code>rc_hochpass_phase · rc_hochpass_betrag</code><a href="https://www.elektronik-kompendium.de/sites/formeln/cr-hochpass">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Übertragungsfunktion der Bandsperre</h3><span class="art">ist ein Bandpass</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>H</i> = 1 / (1 + j<i>Q</i>(<i>f</i>/<i>f</i><sub>0</sub> − <i>f</i><sub>0</sub>/<i>f</i>))</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>H</i> = (1 − (<i>f</i>/<i>f</i><sub>0</sub>)²) / (1 − (<i>f</i>/<i>f</i><sub>0</sub>)² + j <i>f</i>/(<i>f</i><sub>0</sub><i>Q</i>))</span></div>
+        <p class="merke"><strong>Probe:</strong> die EK-Formel ergibt |<i>H</i>| = 1 bei <i>f</i><sub>0</sub>, eine Sperre muss dort 0 liefern. Es gilt <i>H</i><sub>BS</sub> = 1 − <i>H</i><sub>BP</sub>.</p>
+        <div class="fuss"><code>bandsperre_2 · bandpass_2</code><a href="https://www.elektronik-kompendium.de/sites/formeln/bandsperre">EK-Seite</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Leistungselektronik</h2>
+    <div class="grid">
+      <article class="karte">
+        <div class="kopf"><h3>Phasenanschnitt beim Thyristor</h3><span class="art">falsche Formel</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>U</i> = <i>Û</i> · √(½ (1 + cos <i>α</i>))</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>U</i> = <i>U</i><sub>eff</sub> · √(1 − <i>α</i>/π + sin 2<i>α</i> / (2π))</span></div>
+        <p class="merke"><strong>Mittelwerte (ohmsch):</strong> B2: <i>U</i><sub>d</sub> = (<i>Û</i>/π)(1 + cos <i>α</i>), M1: <i>U</i><sub>d</sub> = (<i>Û</i>/2π)(1 + cos <i>α</i>). Probe: <i>α</i> = 90° → <i>U</i><sub>eff</sub>/√2.</p>
+        <div class="fuss"><code>phasenanschnitt_effektivwert · gesteuert_b2 · gesteuert_m1</code><a href="https://www.elektronik-kompendium.de/sites/formeln/zuenden-von-thyristoren">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Phasenanschnitt beim Triac</h3><span class="art">nicht normiert</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>U</i> = <i>U</i><sub>in</sub> · √(2/π · (<i>α</i> − sin <i>α</i> cos <i>α</i>))</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>U</i> = <i>U</i><sub>eff</sub> · √(1 − <i>α</i>/π + sin 2<i>α</i> / (2π))</span></div>
+        <p class="merke"><strong>Probe:</strong> bei <i>α</i> = 180° (gar nicht gezündet) liefert EK √2 · <i>U</i> statt 0 V.</p>
+        <div class="fuss"><code>phasenanschnitt_effektivwert · phasenanschnitt_leistung</code><a href="https://www.elektronik-kompendium.de/sites/formeln/zuenden-von-triacs">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Schwingungspaketsteuerung</h3><span class="art">Faktor √2</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>U</i><sub>eff</sub> = <i>U</i><sub>max</sub> · √(<i>n</i>/<i>N</i>)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>U</i><sub>eff</sub> = <i>U</i><sub>Netz,eff</sub> · √(<i>n</i>/<i>N</i>) &nbsp;·&nbsp; <i>P</i> = <i>P</i><sub>max</sub> · <i>n</i>/<i>N</i></span></div>
+        <p class="merke"><strong>Merke:</strong> mit dem Scheitelwert wird das Ergebnis um √2 zu groß. Gilt auch für die Vielperiodensteuerung.</p>
+        <div class="fuss"><code>schwingungspaket_effektivwert · schwingungspaket_leistung</code><a href="https://www.elektronik-kompendium.de/sites/formeln/schwingungspaketsteuerung">EK-Seite</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Transistor- und Kippschaltungen</h2>
+    <div class="grid">
+      <article class="karte">
+        <div class="kopf"><h3>Astabile Kippstufe mit Transistoren</h3><span class="art">NE555-Formel</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>T</i><sub>1</sub> = 0,693 (<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>) <i>C</i> &nbsp;·&nbsp; <i>T</i><sub>2</sub> = 0,693 <i>R</i><sub>2</sub><i>C</i></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>T</i> = ln 2 · (<i>R</i><sub>B1</sub><i>C</i><sub>1</sub> + <i>R</i><sub>B2</sub><i>C</i><sub>2</sub>)</span></div>
+        <p class="merke"><strong>Merke:</strong> die EK-Formel gehört zum NE555 (<i>R</i><sub>A</sub>, <i>R</i><sub>B</sub>, ein <i>C</i>), nicht zum Multivibrator. Betrifft 2 EK-Seiten.</p>
+        <div class="fuss"><code>multivibrator_periode · ne555_astabil</code><a href="https://www.elektronik-kompendium.de/sites/formeln/astabile-kippstufe-mit-transistoren">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Emitterschaltung mit Gegenkopplung</h3><span class="art">r<sub>e</sub> verwechselt</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>V</i><sub>u</sub> = −<i>R</i><sub>C</sub> / (<i>R</i><sub>E</sub> + (1 + <i>B</i>) <i>r</i><sub>e</sub>)</span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>V</i><sub>u</sub> = −<i>R</i><sub>C</sub> / (<i>R</i><sub>E</sub> + <i>r</i><sub>e</sub>), &nbsp; <i>r</i><sub>e</sub> = <i>U</i><sub>T</sub>/<i>I</i><sub>E</sub> ≈ 26 mV/<i>I</i><sub>E</sub></span></div>
+        <p class="merke"><strong>Merke:</strong> (1 + <i>B</i>) <i>r</i><sub>e</sub> ist der Eingangswiderstand an der Basis, nicht der Emitterwiderstand. Betrifft Strom- und Spannungsgegenkopplung.</p>
+        <div class="fuss"><code>emitterschaltung_vu · bjt_re</code><a href="https://www.elektronik-kompendium.de/sites/formeln/emitterschaltung-mit-stromgegenkopplung">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Verstärkung der Basisschaltung</h3><span class="art">falscher Widerstand</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>V</i><sub>u</sub> = <i>R</i><sub>C</sub> / <i>R</i><sub>E</sub></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>V</i><sub>u</sub> = <i>R</i><sub>C</sub> / <i>r</i><sub>e</sub></span></div>
+        <p class="merke"><strong>Merke:</strong> das Signal kommt am Emitter an, der Eingangswiderstand ist ≈ <i>r</i><sub>e</sub>. Keine Phasendrehung.</p>
+        <div class="fuss"><code>basisschaltung_vu</code><a href="https://www.elektronik-kompendium.de/sites/formeln/basisschaltung">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Schmitt-Trigger mit Transistoren</h3><span class="art">nur Näherung</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>U</i><sub>O/U</sub> = <i>U</i><sub>CC</sub> · <i>R</i><sub>2</sub>/(<i>R</i><sub>1</sub> + <i>R</i><sub>2</sub>) ± <i>U</i><sub>BE</sub></span></div>
+        <div class="zeile r"><b>Besser</b><span class="m"><i>U</i><sub>ein/aus</sub> = <i>U</i><sub>Mitte</sub> ± <i>U</i><sub>H</sub>/2</span></div>
+        <p class="merke"><strong>Merke:</strong> die EK-Formel ist nur eine grobe Näherung. Schwellen aus der konkreten Schaltung bestimmen.</p>
+        <div class="fuss"><code>schaltschwellen</code><a href="https://www.elektronik-kompendium.de/sites/formeln/schmitt-trigger-mit-transistoren">EK-Seite</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Netzteile und Solarzelle</h2>
+    <div class="grid">
+      <article class="karte">
+        <div class="kopf"><h3>Gleichspannung nach dem Ladekondensator</h3><span class="art">Faktor ½</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>U</i><sub>gl</sub> = <i>Û</i> − <i>U</i><sub>Br</sub></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>U</i><sub>gl</sub> = <i>Û</i> − <i>U</i><sub>Br,ss</sub> / 2</span></div>
+        <p class="merke"><strong>Merke:</strong> der Mittelwert der sägezahnförmigen Brummspannung liegt in der Mitte zwischen Spitze und Tal.</p>
+        <div class="fuss"><code>gleichspannung_geglaettet · brummspannung</code><a href="https://www.elektronik-kompendium.de/sites/formeln/gleichrichterschaltungen">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Speicherdrossel im Schaltnetzteil</h3><span class="art">unklar</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>L</i> = <i>U</i><sub>e</sub> (1 − <i>D</i>) <i>T</i> / Δ<i>I</i></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m">Buck: <i>L</i> = <i>U</i><sub>a</sub>(1 − <i>D</i>) / (<i>f</i> Δ<i>I</i>) &nbsp;·&nbsp; Boost: <i>L</i> = <i>U</i><sub>e</sub><i>D</i> / (<i>f</i> Δ<i>I</i>)</span></div>
+        <p class="merke"><strong>Merke:</strong> die EK-Formel passt zu keinem Wandler eindeutig. Buck: <i>D</i> = <i>U</i><sub>a</sub>/<i>U</i><sub>e</sub>, Boost: <i>D</i> = 1 − <i>U</i><sub>e</sub>/<i>U</i><sub>a</sub>.</p>
+        <div class="fuss"><code>tiefsetzsteller_l · hochsetzsteller_l</code><a href="https://www.elektronik-kompendium.de/sites/formeln/schaltnetzgeraet">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Fotostrom der Solarzelle</h3><span class="art">Einheit falsch</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>I</i><sub>ph</sub> = <i>q</i> · <i>G</i> · <i>A</i> · <i>η</i></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>I</i><sub>ph</sub> = <i>S</i> · <i>E</i> · <i>A</i> &nbsp;·&nbsp; <i>I</i><sub>ph</sub> = <i>η</i> <i>e</i> <i>P</i> / (<i>h</i><i>f</i>)</span></div>
+        <p class="merke"><strong>Probe:</strong> bei EK kommt C·W heraus, also keine Stromstärke. <i>S</i> in A/W, <i>E</i> in W/m².</p>
+        <div class="fuss"><code>fotostrom · fotostrom_quanten</code><a href="https://www.elektronik-kompendium.de/sites/formeln/fotoelement-und-solarzelle">EK-Seite</a></div>
+      </article>
+
+      <article class="karte">
+        <div class="kopf"><h3>Beschleunigung auf der schiefen Ebene</h3><span class="art">durch m geteilt</span></div>
+        <div class="zeile f"><b>EK</b><span class="m"><i>a</i> = <i>g</i> sin <i>α</i> − <i>μ</i> <i>g</i> cos <i>α</i> / <i>m</i></span></div>
+        <div class="zeile r"><b>Richtig</b><span class="m"><i>a</i> = <i>g</i> (sin <i>α</i> − <i>μ</i> cos <i>α</i>)</span></div>
+        <p class="merke"><strong>Merke:</strong> die Masse kürzt sich heraus. Der Körper rutscht erst ab tan <i>α</i> &gt; <i>μ</i>.</p>
+        <div class="fuss"><code>beschleunigung_schiefe_ebene</code><a href="https://www.elektronik-kompendium.de/sites/formeln/schiefe-ebene">EK-Seite</a></div>
+      </article>
+    </div>
+  </section>
+
+  <section>
+    <h2>Seiten mit falschem Thema</h2>
+    <div class="fremd">
+      <table>
+        <thead><tr><th>EK-Seite</th><th>Was auf EK steht</th><th>Was du stattdessen brauchst</th></tr></thead>
+        <tbody>
+          <tr><td>Feldplatte</td><td>Kondensatorformeln (<i>C</i> = <i>ε</i><i>A</i>/<i>d</i>)</td><td>Magnetfeldabhängiger Widerstand: <i>R</i><sub>B</sub> = <i>R</i><sub>0</sub>(1 + (<i>μ</i><i>B</i>)²) · <code>feldplatte_widerstand</code></td></tr>
+          <tr><td>Vielperiodensteuerung</td><td>Finanzmathematik (NPV, IRR, ROI)</td><td><i>P</i> = <i>P</i><sub>max</sub> · <i>n</i>/<i>N</i> · <code>schwingungspaket_leistung</code></td></tr>
+          <tr><td>Reihenstabilisierung</td><td>Z-Transformation, DFT</td><td>Längstransistor an Z-Diode: <i>U</i><sub>a</sub> = <i>U</i><sub>Z</sub> − <i>U</i><sub>BE</sub> · <code>reihenstabilisierung_ua</code></td></tr>
+          <tr><td>Glättung und Siebung</td><td>Gleitender Mittelwert, Fourier-Transformation</td><td>Brummspannung und Siebfaktor · <code>brummspannung · siebfaktor_rc · siebfaktor_lc</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <p>Quelle: <a href="https://www.elektronik-kompendium.de/sites/formeln/">elektronik-kompendium.de/sites/formeln</a>, alle 343 Themenseiten abgeglichen am 03.10.2026. EK kann die Seiten seitdem geändert haben.</p>
+    <p>Die richtigen Formeln sind in <code>et_formeln.py</code> umgesetzt und in <code>test_ek_abdeckung.py</code> gegen Referenzwerte geprüft. Begründungen: <code>HINWEISE</code> in <code>ek_abdeckung.py</code>.</p>
+  </footer>
+</div>
+</body>
+</html>
