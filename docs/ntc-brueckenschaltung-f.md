@@ -54,7 +54,7 @@ Abweichung zur echten Kurve:
 |---|---|---|---|---|---|---|
 | $U_{Br} - U_{lin}$ | 0 V | −0,155 V | −0,116 V | +0,097 V | +0,158 V | 0 V |
 
-Die größte Abweichung liegt bei etwa **±0,16 V** (→ Material für d).
+Die Tabelle zeigt nur Stützstellen im 10-K-Raster. Fein gerechnet (`playground.py`, 1-K-Schritte) liegt die größte Abweichung bei **+0,173 V bei etwa 36 °C**, nach unten bei **−0,161 V bei etwa 2,5 °C** (→ Material für d).
 
 ### Variante B: Tangente im Arbeitspunkt 25 °C (über die Ableitung, gehört zu h4)
 
